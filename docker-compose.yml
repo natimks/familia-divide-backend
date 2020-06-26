@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  #api:
+  #  container_name: go-workshop
+  #  build: '.'
+  #  environment:
+  #    PORT: 8088
+  #    DB_HOST: database
+  #    DB_PASSWD: admin
+  #  depends_on:
+  #    - database
+  #  ports:
+  #    - '8088:8088'
+  #  restart: always   
+
+  database:
+    container_name: database-familia-divide
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: familia_divide
+    ports:
+      - '8010:5432'
