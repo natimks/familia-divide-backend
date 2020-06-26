@@ -20,14 +20,10 @@ func GetStatisticsDashboard(c *gin.Context) {
 	db.Preload("Incomes").First(&selectedUser)
 	db.Preload("Expenses").First(&selectedUser)
 
-	var totalIncomesRelative float32 = 0.0
 	for i := 0; i < len(selectedUser.UsersFamily); i++ {
 		relative := selectedUser.UsersFamily[i]
 		db.Preload("Incomes").First(&relative)
-
-		for i := 0; i < len(relative.Incomes); i++ {
-			totalIncomesRelative += relative.Incomes[i].Value
-		}
+		db.Preload("Expenses").First(&relative)
 	}
 
 	c.JSON(200, selectedUser)
